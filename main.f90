@@ -12,7 +12,7 @@ module com_date
 	parameter (UU=0.01d0)
 	integer e(Q,2)
 	real (kind=ps) w(Q)
-		integer max_wings_supported,wing_count,motion_columns_per_wing,max_motion_columns
+		integer max_wings_supported,wing_count,motion_columns_per_wing,max_motion_columns !翼数量相关参数
 		integer boundary_points_per_wing,boundary_segments_per_wing,max_boundary_points,max_boundary_segments
 		parameter (max_wings_supported=8)
 		parameter (wing_count=2)	!仿真翼数量
@@ -396,13 +396,13 @@ Program LBM
         endif
 
 !		if ((mod(n,2500).eq.0).and.(((n.gt.160000).and.(n.le.180001)).or.((n.gt.20000).and.(n.le.40001)))) flag1=1
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=2.0,4T,10T
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=1.7,4T,10T
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=1.4,4T,10T
-		if ((mod(n,4000).eq.0).and.(((n.gt.85679).and.(n.le.114239)).or.((n.gt.314159).and.(n.le.342719)))) flag1=1		!k=1.1,4T,12T
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=0.8,4T,10T
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=0.5,4T,10T
-!		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=0.2,4T,10T
+!		if ((mod(n,2000).eq.0).and.(((n.gt.109956).and.(n.le.125664)).or.((n.gt.235619).and.(n.le.251327)))) flag1=1	!k=2.0, 8T,16T
+!		if ((mod(n,2500).eq.0).and.(((n.gt.92400).and.(n.le.110880)).or.((n.gt.240239).and.(n.le.258719)))) flag1=1		!k=1.7, 6T,14T
+!		if ((mod(n,3000).eq.0).and.(((n.gt.112200).and.(n.le.134640)).or.((n.gt.291719).and.(n.le.314159)))) flag1=1	!k=1.4, 6T,14T
+!		if ((mod(n,4000).eq.0).and.(((n.gt.85679).and.(n.le.114239)).or.((n.gt.314159).and.(n.le.342719)))) flag1=1		!k=1.1, 4T,12T
+		if ((mod(n,5000).eq.0).and.(((n.gt.117809).and.(n.le.157079)).or.((n.gt.353429).and.(n.le.392699)))) flag1=1	!k=0.8, 4T,10T
+!		if ((mod(n,8000).eq.0).and.(((n.gt.125664).and.(n.le.188496)).or.((n.gt.565487).and.(n.le.628319)))) flag1=1	!k=0.5, 3T,10T
+!		if ((mod(n,20000).eq.0).and.(((n.gt.157080).and.(n.le.314159)).or.((n.gt.1099557).and.(n.le.1256637)))) flag1=1	!k=0.2, 2T,8T
         if((flag1.eq.1).and.(flag2.eq.0))then
 		!if(n.eq.1000)then
 			!$acc update host(mesh(1)%u,mesh(1)%v,mesh(1)%pre,mesh(1)%body,mesh(1)%dvordt,xb1,yb1)

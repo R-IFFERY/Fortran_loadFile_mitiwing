@@ -140,7 +140,7 @@ Subroutine output(cycle1,mesh)
 
 	parameter(outfile=1234)
 
-	character*6 nm
+	character(len=32) :: nm
 	do n=1,max_meshid
 		if (numprocs.ne.1) then
 			if (myid.eq.0) then
@@ -162,8 +162,8 @@ Subroutine output(cycle1,mesh)
 			totalnodecounts=totalnodecounts+mesh(i)%nodescounts
 			totalfacecounts=totalfacecounts+mesh(i)%facecounts
 		enddo
-		write(nm,'(i6.5)')cycle1
-        call build_output_path("F"//nm//".dat", out_path)
+			write(nm,'(i0)') cycle1
+	        call build_output_path("F"//trim(nm)//".dat", out_path)
 		open(outfile,file=trim(out_path),status="unknown")
 		write(outfile,'(a)') 'VARIABLES = "X" "Y" "U" "V" "Presure" "Vorticity" "body" "dvordt" '
 		out_nx=(mesh(1)%Nx-1)/output_stride_x+1
@@ -251,10 +251,10 @@ Subroutine    output_gforce(mm,mesh)
 
 	parameter(outfile=1267)
 
-	character*6 nm
+	character(len=32) :: nm
     
-    write(nm,'(i6.6)')mm
-    call build_output_path("g"//nm//".dat", out_path)
+    write(nm,'(i0)') mm
+    call build_output_path("g"//trim(nm)//".dat", out_path)
     open(outfile,file=trim(out_path),status="unknown")
     write(outfile,'(a)') 'VARIABLES = "X" "Y" "gforcex" "gforcey" '
     write(outfile,*) 'zone,t="',mm,'",i=',mesh%Nx,',j=',mesh%Ny
