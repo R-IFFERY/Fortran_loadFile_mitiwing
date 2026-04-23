@@ -12,8 +12,8 @@ Subroutine ini_mesh(n,mesh)
 	Real (kind=ps), external :: stret
 
 	!网格范围
-	width=30.0d0
-	height=15.0d0
+	width=40.0d0
+	height=20.0d0
 
 	!网格1初始化
 	mesh(1)%meshid=1
@@ -33,8 +33,8 @@ Subroutine ini_mesh(n,mesh)
 	allocate(mesh(1)%body(mesh(1)%Nx,mesh(1)%Ny))	
 	allocate(mesh(1)%left(mesh(1)%Ny,4),mesh(1)%right(mesh(1)%Ny,4),mesh(1)%up(mesh(1)%Nx,4),mesh(1)%down(mesh(1)%Nx,4))	!(:,1)与几号网格邻接；=0，则为数值边界条件，(:,2)是否有对应的临界网格交换点，=0，没有交换点，=1有交换点，(:,3)邻接网格的x编号，(:,4)邻接网格的y编号
 	allocate(mesh(1)%leftf2(2:mesh(1)%Ny-1,Q),mesh(1)%rightf2(2:mesh(1)%Ny-1,Q),mesh(1)%upf2(mesh(1)%Nx,Q),mesh(1)%downf2(mesh(1)%Nx,Q))
-	mesh(1)%ox=0.0d0
-	mesh(1)%oy=0.0d0
+	mesh(1)%ox=-0.5d0*width
+	mesh(1)%oy=-0.5d0*height
 	!内存分配
 	mesh(1)%start_row=myid*int(mesh(1)%Nx/numprocs)-1
 	mesh(1)%end_row=(myid+1)*int(mesh(1)%Nx/numprocs)
